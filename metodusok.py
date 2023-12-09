@@ -7,7 +7,7 @@ import time
 
 def Felirat1():
 	felirat = """
-							                                                                           
+																									   
 	\ \        /    |                            __ __|                                  
 	 \ \  \   / _ \ |  __|  _ \  __ `__ \   _ \     |  _` | __ \   _` |  __| __ \   _ \  
 	  \ \  \ /  __/ | (    (   | |   |   |  __/     | (   | |   | (   | |    |   | (   | 
@@ -25,12 +25,12 @@ def Felirat1():
 
 def Felirat2():
 	felirat = """
-								                                                                           
+																										   
 	 |                     |_)              _)  / 
 	 |      _ \   _` |  _` | | __ \   _` |     /  
 	 |     (   | (   | (   | | |   | (   |    /   
 	_____|\___/ \__,_|\__,_|_|_|  _|\__, |  _/ _) 
-	                                |___/       
+					|___/       
 
 			"""
 	print(f"{felirat}\n\n")
@@ -69,34 +69,22 @@ def EtlapSzelesseg(etlap):
 def Kerdesek(felirat):
 
 	while True:
-	    try:
-	        valasztott = int(input(f"Kérem gépelje be a választott étel számát: \nEllenben ha kihagyná a {felirat} választását,\n nyomjon egy 'Entert': "))
-	    except ValueError:
-	        print("\nKérlek a megadott számok közül válassz! :)\n")
-	        continue
-	    if valasztott >= 1 and valasztott <= 4:
-	        break
-	    else:
-	        print("\nA beírt számnak 1-4 között kell lennie! :)\n")
+		try:
+			valasztott = int(input(f"Kérem gépelje be a választott étel számát: \nEllenben ha kihagyná a {felirat} választását,\n nyomjon egy 'Entert': "))
+		except ValueError:
+			print("\nKérlek a megadott számok közül válassz! :)\n")
+			continue
+		if valasztott >= 0 and valasztott <= 4:
+			break
+		else:
+			print("\nA beírt számnak 1-4 között kell lennie! :)\n")
 
 	return valasztott
 
 
 
 
-'''
-while True:
-	valasztott = input(f"Kérem gépelje be a választott étel számát: \nEllenben ha kihagyná a {felirat} választását,\n nyomjon egy 'Entert': ")
 
-	if valasztott == "":
-		break
-	elif valasztott.isdigit():
-		valasztott = int(valasztott)
-		if valasztott >= 1 and valasztott <= 4:
-			break
-	else:
-		print("\nA beírt karakter nem számos! :)\n")
-'''
 
 
 
@@ -121,8 +109,11 @@ def EtelValasztas(etlap, etlapAr, etlapCim):
 		print(f"{jel*(csillagsor+2)}")
 
 		sorszam = Kerdesek(felirat)-1
-		valasztottLista.append(etelTipus[sorszam])
-		vegOsszeg += etelAr[sorszam]
+		if sorszam == -1:
+			pass
+		else:
+			valasztottLista.append(etelTipus[sorszam])
+			vegOsszeg += etelAr[sorszam]
 
 	return valasztottLista, vegOsszeg
 
@@ -156,8 +147,8 @@ def MegrendelésPluszNyugta(etlap, etlapAr, etlapCim):
 	for etel in valasztottEtel:
 		print(f"{jel} -- {etel:<{csillagsor-4}}{jel}")
 
-	print(f"{jel*(csillagsor+2)}\n\n  Végösszeg: {osszeg} Ft")
-
+	szervizdij = round(osszeg*0.1)
+	print(f"{jel*(csillagsor+2)}\n\n    Összeg: {osszeg} Ft\n    +szervízdíj: {szervizdij} Ft\n\n Végösszeg: {osszeg+szervizdij} Ft")
 
 	
 
